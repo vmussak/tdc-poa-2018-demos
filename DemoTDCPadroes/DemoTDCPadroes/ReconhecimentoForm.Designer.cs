@@ -39,7 +39,6 @@
             this.btnTagChima = new System.Windows.Forms.Button();
             this.btnTreinar = new System.Windows.Forms.Button();
             this.btnReconhecerCerveja = new System.Windows.Forms.Button();
-            this.btnReconhecerChima = new System.Windows.Forms.Button();
             this.labelResultado = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -68,7 +67,7 @@
             // 
             this.labelDominios.AutoSize = true;
             this.labelDominios.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDominios.Location = new System.Drawing.Point(26, 192);
+            this.labelDominios.Location = new System.Drawing.Point(35, 253);
             this.labelDominios.Name = "labelDominios";
             this.labelDominios.Size = new System.Drawing.Size(0, 37);
             this.labelDominios.TabIndex = 2;
@@ -85,7 +84,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(506, 134);
+            this.pictureBox1.Location = new System.Drawing.Point(604, 134);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(392, 325);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -97,7 +96,7 @@
             // 
             this.labelImagem.AutoSize = true;
             this.labelImagem.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelImagem.Location = new System.Drawing.Point(528, 89);
+            this.labelImagem.Location = new System.Drawing.Point(597, 76);
             this.labelImagem.Name = "labelImagem";
             this.labelImagem.Size = new System.Drawing.Size(0, 37);
             this.labelImagem.TabIndex = 5;
@@ -106,7 +105,7 @@
             // 
             this.labelTag.AutoSize = true;
             this.labelTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTag.Location = new System.Drawing.Point(528, 34);
+            this.labelTag.Location = new System.Drawing.Point(597, 21);
             this.labelTag.Name = "labelTag";
             this.labelTag.Size = new System.Drawing.Size(0, 37);
             this.labelTag.TabIndex = 6;
@@ -115,7 +114,7 @@
             // 
             this.labelStatus.AutoSize = true;
             this.labelStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStatus.Location = new System.Drawing.Point(26, 310);
+            this.labelStatus.Location = new System.Drawing.Point(35, 371);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(0, 37);
             this.labelStatus.TabIndex = 7;
@@ -146,25 +145,15 @@
             this.btnReconhecerCerveja.Name = "btnReconhecerCerveja";
             this.btnReconhecerCerveja.Size = new System.Drawing.Size(175, 23);
             this.btnReconhecerCerveja.TabIndex = 10;
-            this.btnReconhecerCerveja.Text = "Reconhecer Imagem Cerveja";
+            this.btnReconhecerCerveja.Text = "Reconhecer Imagem";
             this.btnReconhecerCerveja.UseVisualStyleBackColor = true;
             this.btnReconhecerCerveja.Click += new System.EventHandler(this.btnReconhecerCerveja_Click);
-            // 
-            // btnReconhecerChima
-            // 
-            this.btnReconhecerChima.Location = new System.Drawing.Point(228, 89);
-            this.btnReconhecerChima.Name = "btnReconhecerChima";
-            this.btnReconhecerChima.Size = new System.Drawing.Size(175, 23);
-            this.btnReconhecerChima.TabIndex = 11;
-            this.btnReconhecerChima.Text = "Reconhecer Imagem Chimarrão";
-            this.btnReconhecerChima.UseVisualStyleBackColor = true;
-            this.btnReconhecerChima.Click += new System.EventHandler(this.btnReconhecerChima_Click);
             // 
             // labelResultado
             // 
             this.labelResultado.AutoSize = true;
             this.labelResultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelResultado.Location = new System.Drawing.Point(499, 479);
+            this.labelResultado.Location = new System.Drawing.Point(597, 487);
             this.labelResultado.Name = "labelResultado";
             this.labelResultado.Size = new System.Drawing.Size(0, 37);
             this.labelResultado.TabIndex = 12;
@@ -176,7 +165,6 @@
             this.ClientSize = new System.Drawing.Size(1073, 598);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.labelResultado);
-            this.Controls.Add(this.btnReconhecerChima);
             this.Controls.Add(this.btnReconhecerCerveja);
             this.Controls.Add(this.btnTreinar);
             this.Controls.Add(this.btnTagChima);
@@ -208,7 +196,6 @@
         private System.Windows.Forms.Button btnTagChima;
         private System.Windows.Forms.Button btnTreinar;
         private System.Windows.Forms.Button btnReconhecerCerveja;
-        private System.Windows.Forms.Button btnReconhecerChima;
         private System.Windows.Forms.Label labelResultado;
     }
 }

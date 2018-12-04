@@ -37,11 +37,11 @@ namespace DemoTDCPadroes
 
             _reconhecedorDePadroes.ExcluirProjetos();
 
-            _project = _reconhecedorDePadroes.CriarProjeto($"TDC_DEMO_{Guid.NewGuid()}",
+            _project = _reconhecedorDePadroes.CriarProjeto($"TDC_DEMO",
                                                         "Demo de reconhecimento de padrões :D",
                                                         generalDomain.Id);
 
-            labelProjeto.Text = _project.Name + " - " + _project.Id;
+            labelProjeto.Text = _project.Name + "\n" + _project.Id;
 
         }
 
@@ -73,9 +73,11 @@ namespace DemoTDCPadroes
                 iteration = _reconhecedorDePadroes.BuscarIteracao(_project.Id, iteration.Id);
                 System.Threading.Thread.Sleep(2000);
             }
+
+            labelStatus.Text = "FOI :)";
         }
 
-        async void UploadDasImagens(Tag tag)
+        void UploadDasImagens(Tag tag)
         {
             var tagIds = new List<string> { tag.Id.ToString() };
             foreach (var imagePath in Directory.GetFiles($"{_basePath}{tag.Name}"))
@@ -85,37 +87,51 @@ namespace DemoTDCPadroes
                     _reconhecedorDePadroes.CriarImagem(_project.Id, imageStream, tagIds);
                 }
 
-                pictureBox1.LoadAsync(imagePath);
-                //pictureBox1.ImageLocation = imagePath;
-                //pictureBox1.Refresh();
-                System.Threading.Thread.Sleep(2000);
+                SetPicture(imagePath);
             }
+        }
+
+        private void SetPicture(string img)
+        {
+            if (pictureBox1.InvokeRequired)
+            {
+                pictureBox1.Invoke(new MethodInvoker(
+                delegate ()
+                {
+                    pictureBox1.Load(img);
+                }));
+            }
+            else
+            {
+                pictureBox1.Load(img);
+            }
+            pictureBox1.Refresh();
+            System.Threading.Thread.Sleep(2000);
         }
 
         private void btnReconhecerCerveja_Click(object sender, EventArgs e)
         {
-            Reconhecer("cerveja");
-        }
-
-        private void btnReconhecerChima_Click(object sender, EventArgs e)
-        {
-            Reconhecer("cuia");
-        }
-
-        void Reconhecer(string name)
-        {
-            labelResultado.Text = "Reconhecendo...";
-            var imagePath = $@"{_basePath}\teste\{name}.jpg";
-
-            ResultadoDoReconhecimento resultado;
-            using (var imageStream = new FileStream(imagePath, FileMode.Open))
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Jpeg files | *.jpg";
+            dialog.Multiselect = false;
+            if (dialog.ShowDialog() == DialogResult.OK) 
             {
-                pictureBox1.ImageLocation = imagePath;
-                resultado = _comparadorDePadroes.ReconhecerImagem(_project.Id, iteration.Id, imageStream);
-            }
+                string path = dialog.FileName;
+                
+                ResultadoDoReconhecimento resultado;
 
-            foreach (var tag in resultado.Predictions)
-                labelResultado.Text += $"{tag.Tag}: {tag.Probability:P2}\n";
+                using (var imageStream = new FileStream(path, FileMode.Open))
+                {
+                    resultado = _comparadorDePadroes.ReconhecerImagem(_project.Id, iteration.Id, imageStream);
+                }
+
+                pictureBox1.Load(path);
+                pictureBox1.Refresh();
+
+                labelResultado.Text = "";
+                foreach (var tag in resultado.Predictions)
+                    labelResultado.Text += $"{tag.Tag}: {tag.Probability:P2}\n";
+            }
         }
     }
 }
